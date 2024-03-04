@@ -1,9 +1,10 @@
 export type SchoolItem = {
   name: string
-  address: string
+  address: string[];
 }
 
 export default function SchoolListItem({ name, address }: SchoolItem) {
+  console.log(address)
   return (
     <div className="w-full p-3">
       <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
@@ -30,7 +31,29 @@ export default function SchoolListItem({ name, address }: SchoolItem) {
                 <div className="text-sm text-gray-900">{name}</div>
               </td>
               <td className="whitespace-nowrap px-6 py-4">
-                <div className="text-sm text-gray-900">{address}</div>
+                {address.map((item: any) => (
+                  <div
+                    key={item.id}
+                    className="space-y-2 text-sm text-gray-900"
+                  >
+                    <div>
+                      <span className="font-semibold">Name:</span>{" "}
+                      {item.nameOrNumber}
+                    </div>
+                    <div>
+                      <span className="font-semibold">Town or City:</span>{" "}
+                      {item.townOrCity}
+                    </div>
+                    <div>
+                      <span className="font-semibold">Address Code:</span>{" "}
+                      {item.addressCode}
+                    </div>
+                    <div>
+                      <span className="font-semibold">Country:</span>{" "}
+                      {item.country}
+                    </div>
+                  </div>
+                ))}
               </td>
             </tr>
           </tbody>
